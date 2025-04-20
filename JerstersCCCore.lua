@@ -18,6 +18,7 @@ end
 
 -- Slash command for the help menu
 SLASH_JERSTERSCC1 = "/JerstersCC"
+SLASH_JERSTERSCC2 = "/JCC"
 SlashCmdList["JERSTERSCC"] = function(msg)
     if msg:lower() == "menu" then
         -- Display help menu
