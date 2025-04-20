@@ -3,6 +3,7 @@
 ## Notes: Makes routine acctions easier.
 ## Version: 1.0
 
-JerstersCCCore.lua
+
 TradeItems.lua
-TradeDarnassusFriendship.lua
+TradeConfigs.lua
+JerstersCCCore.lua
