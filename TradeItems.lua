@@ -23,7 +23,7 @@ function TradeItems:RegisterSlashCommand(slashCmd, config)
         end
     end
     -- Register with JerstersCC
-    JerstersCC:RegisterSlashCommand(slashCmd, handler, config.helpText, "[stacks: nil, " .. table.concat(config.validStacks, ", ") .. "]")
+    JerstersCC:RegisterSlashCommand(slashCmd, handler, config.helpText, "[stacks: nil, " .. table.concat(config.validStacks, ", ") .. "]", "Trading")
 end
 
 -- Error handler

@@ -5,13 +5,14 @@ JerstersCC = JerstersCC or {}
 JerstersCC.commands = JerstersCC.commands or {}
 
 -- Generic function to register slash commands
-function JerstersCC:RegisterSlashCommand(slashCmd, handler, description, parameters)
+function JerstersCC:RegisterSlashCommand(slashCmd, handler, description, parameters, category)
     _G["SLASH_" .. slashCmd .. "1"] = "/" .. slashCmd:lower()
     SlashCmdList[slashCmd] = handler
     -- Store command info for help menu
     self.commands[slashCmd] = {
         description = description or "No description available.",
-        parameters = parameters or ""
+        parameters = parameters or "",
+        category = category or "General"
     }
 end
 
@@ -24,9 +25,19 @@ SlashCmdList["JERSTERSCC"] = function(msg)
         if next(JerstersCC.commands) == nil then
             print("No commands available.")
         else
-            print("Available commands:")
+            -- Group commands by category
+            local categories = {}
             for cmd, info in pairs(JerstersCC.commands) do
-                print("  /" .. cmd:lower() .. " " .. info.parameters .. " - " .. info.description)
+                local cat = info.category
+                categories[cat] = categories[cat] or {}
+                table.insert(categories[cat], {cmd = cmd, info = info})
+            end
+            -- Display each category
+            for cat, cmds in pairs(categories) do
+                print(cat .. " Commands:")
+                for _, entry in ipairs(cmds) do
+                    print("  /" .. entry.cmd:lower() .. " " .. entry.info.parameters .. " - " .. entry.info.description)
+                end
             end
         end
     else
