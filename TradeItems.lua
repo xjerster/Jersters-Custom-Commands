@@ -26,6 +26,35 @@ function TradeItems:RegisterSlashCommand(slashCmd, config)
     JerstersCC:RegisterSlashCommand(slashCmd, handler, config.helpText, "[stacks: nil, " .. table.concat(config.validStacks, ", ") .. "]", "Trading")
 end
 
+
+-- Register a custom trade command for /JCCTrade ItemName Count
+function TradeItems:RegisterCustomTradeCommand(slashCmd)
+    print("Registering custom trade command: /" .. slashCmd:lower()) -- Debug print
+    local handler = function(msg)
+        -- Parse input: expect "ItemName Count" (ItemName can have spaces)
+        local itemName, count = msg:match("^(.-)%s+(%d+)$")
+        count = tonumber(count)
+        
+        -- Check if trade window is open
+        if not self:IsTradeWindowOpen() then
+            self:Error("Please open a trade window first.")
+            return
+        end
+
+        -- Trade the item
+        self:GetStack(itemName, count, 1, function(nextSlot)
+            if nextSlot then
+                print("Traded " .. count .. "x " .. itemName .. " successfully.")
+            else
+                self:Error("Failed to trade " .. itemName .. ".")
+            end
+        end)
+    end
+    -- Register with JerstersCC
+    JerstersCC:RegisterSlashCommand(slashCmd, handler, "Trade a specific item with a custom quantity", "ItemName Count", "Trading")
+end
+
+
 -- Error handler
 function TradeItems:Error(msg)
     print("|cffff0000TradeItems Error:|r " .. msg)
