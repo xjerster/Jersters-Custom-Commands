@@ -1,3 +1,4 @@
+---@diagnostic disable: param-type-mismatch, need-check-nil, undefined-field
 -- TradeItems module
 TradeItems = TradeItems or {}
 
@@ -73,7 +74,7 @@ function TradeItems:FindExactStack(itemName, stackSize)
             local itemInfo = C_Container.GetContainerItemInfo(bag, slot)
             local itemID = C_Container.GetContainerItemID(bag, slot)
             if itemID and itemInfo then
-                local name = GetItemInfo(itemID)
+                local name = C_Item.GetItemInfo(itemID)
                 if name == itemName and itemInfo.stackCount == stackSize then
                     return bag, slot
                 end
@@ -109,7 +110,7 @@ function TradeItems:CreateStack(itemName, stackSize, callback)
             local itemInfo = C_Container.GetContainerItemInfo(bag, slot)
             local itemID = C_Container.GetContainerItemID(bag, slot)
             if itemID and itemInfo and itemInfo.stackCount >= stackSize then
-                local name = GetItemInfo(itemID)
+                local name = C_Item.GetItemInfo(itemID)
                 if name == itemName then
                     targetBag, targetSlot = self:FindEmptySlot()
                     if not targetBag then
@@ -149,7 +150,7 @@ function TradeItems:CreateStack(itemName, stackSize, callback)
 
         local itemInfo = C_Container.GetContainerItemInfo(targetBag, targetSlot)
         local itemID = C_Container.GetContainerItemID(targetBag, targetSlot)
-        local name = itemID and GetItemInfo(itemID) or nil
+        local name = itemID and C_Item.GetItemInfo(itemID) or nil
         if itemInfo and name == itemName and itemInfo.stackCount == stackSize then
             self:Hide()
             self:SetScript("OnUpdate", nil)
