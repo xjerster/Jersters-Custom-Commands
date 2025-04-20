@@ -30,10 +30,19 @@ end
 
 -- Register a custom trade command for /JCCTrade ItemName Count
 function TradeItems:RegisterCustomTradeCommand(slashCmd)
-    print("Registering custom trade command: /" .. slashCmd:lower()) -- Debug print
     local handler = function(msg)
+        -- Normalize input: Handle item links with C_Item.GetItemInfo, remove brackets for plain text
+        local normalizedMsg
+        if msg:match("|Hitem") then
+            local link, count = msg:match("^(.-)%s+(%d+)$")
+            local itemName = link and C_Item.GetItemInfo(link) or msg
+            normalizedMsg = itemName .. " " .. (count or "")
+        else
+            normalizedMsg = msg:gsub("%[", ""):gsub("%]", "")
+        end
+        
         -- Parse input: expect "ItemName Count" (ItemName can have spaces)
-        local itemName, count = msg:match("^(.-)%s+(%d+)$")
+        local itemName, count = normalizedMsg:match("^(.-)%s+(%d+)$")
         count = tonumber(count)
         
         -- Check if trade window is open
