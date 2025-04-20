@@ -1,0 +1,8 @@
+## Interface: 11506
+## Title: JerstersCustomCommands
+## Notes: Makes routine acctions easier.
+## Version: 1.0
+
+JerstersCCCore.lua
+TradeItems.lua
+TradeDarnassusFriendship.lua
