@@ -3,9 +3,8 @@ TradeItems = TradeItems or {}
 
 -- Register a Slash Command for trading.
 function TradeItems:RegisterSlashCommand(slashCmd, config)
-    _G["SLASH_" .. slashCmd .. "1"] = "/" .. slashCmd:lower()
     local defaultStacksToTrade = config.stacksToTrade -- Store the default value
-    SlashCmdList[slashCmd] = function(msg)
+    local handler = function(msg)
         local stacksToTrade = tonumber(msg) -- Convert input to number
         if stacksToTrade then
             -- Check if input is in validStacks
@@ -23,6 +22,8 @@ function TradeItems:RegisterSlashCommand(slashCmd, config)
             self:StartTrade(config)
         end
     end
+    -- Register with JerstersCC
+    JerstersCC:RegisterSlashCommand(slashCmd, handler, config.helpText, "[stacks: nil, " .. table.concat(config.validStacks, ", ") .. "]")
 end
 
 -- Error handler
@@ -178,26 +179,4 @@ function TradeItems:StartTrade(config)
     end
 
     processItem(1)
-end
-
--- Helper function to register trade slash commands
-function TradeItems:RegisterTradeSlashCommand(slashCmd, config)
-    _G["SLASH_" .. slashCmd .. "1"] = "/" .. slashCmd:lower()
-    SlashCmdList[slashCmd] = function(msg)
-        local stacksToTrade = tonumber(msg) -- Convert input to number
-        if stacksToTrade then
-            -- Validate stacksToTrade against validStacks
-            for _, validStack in pairs(config.validStacks) do
-                if stacksToTrade == validStack then
-                    config.stacksToTrade = stacksToTrade
-                    self:StartTrade(config)
-                    return
-                end
-            end
-            self:Error("Invalid number of stacks. Use " .. table.concat(config.validStacks, ", ") .. ".")
-        else
-            -- No argument provided, use default
-            self:StartTrade(config)
-        end
-    end
 end

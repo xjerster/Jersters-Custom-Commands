@@ -7,7 +7,8 @@ local DarnassusConfig = {
         {name = "Sentinel's Card", stackSize = 5}
     },
     stacksToTrade = 1,
-    validStacks = {1, 2, 3, 4} -- Allowed # of stacks to trade.
+    validStacks = {1, 2, 3, 4}, -- Allowed # of stacks to trade.
+    helpText = "Automates trading Darnassus Friendship materials"
 }
 
 -- Configuration table for Scropok
@@ -18,7 +19,8 @@ local ScorpokConfig = {
         {name = "Vulture Gizzard", stackSize = 2}
     },
     stacksToTrade = 1,
-    validStacks = {1, 2, 3, 4} -- Allowed # of stacks to trade.
+    validStacks = {1, 2, 3, 4}, -- Allowed # of stacks to trade.
+    helpText = "Automates trading Salt of the Scorpok materials"
 }
 
 -- Register slash commands

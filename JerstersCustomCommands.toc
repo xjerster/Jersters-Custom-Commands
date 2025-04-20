@@ -3,7 +3,6 @@
 ## Notes: Makes routine acctions easier.
 ## Version: 1.0
 
-
+JerstersCCCore.lua
 TradeItems.lua
 TradeConfigs.lua
-JerstersCCCore.lua
