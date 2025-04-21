@@ -14,3 +14,8 @@ Example Commands:
 /tccdarnbuff - Will break off a stack of 5 of the 3 items used for the Darnassus Friendship Buff.
 
 /jccscorpok 2 - Will break off 2x stacks of for each of the Salt of the Scorpok quest items. (3/2/1 => 6/4/2)
+
+
+TODO:
+Order Commands in the help menu
+Add item inseerter?

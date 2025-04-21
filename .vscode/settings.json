@@ -17,6 +17,8 @@
     "Lua.diagnostics.globals": [
         "NUM_BAG_SLOTS",
         "TradeFrame",
-        "SlashCmdList"
+        "SlashCmdList",
+        "GameTooltip",
+        "UIParent"
     ]
 }

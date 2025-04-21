@@ -24,7 +24,7 @@ function TradeItems:RegisterSlashCommand(slashCmd, config)
         end
     end
     -- Register with JerstersCC
-    JerstersCC:RegisterSlashCommand(slashCmd, handler, config.helpText, "[stacks: nil, " .. table.concat(config.validStacks, ", ") .. "]", "Trading")
+    JerstersCC:RegisterSlashCommand(slashCmd, handler, config.helpText, "[stacks: nil, " .. table.concat(config.validStacks, ", ") .. "]", "Split Trade")
 end
 
 -- Register a custom trade command for /JCCTrade ItemName Count
@@ -59,7 +59,7 @@ function TradeItems:RegisterCustomTradeCommand(slashCmd)
         end)
     end
     -- Register with JerstersCC
-    JerstersCC:RegisterSlashCommand(slashCmd, handler, "Trade a specific item with a custom quantity", "ItemName Count", "Trading")
+    JerstersCC:RegisterSlashCommand(slashCmd, handler, "Trade a specific item with a custom quantity", "ItemName Count", "Custom Trade")
 end
 
 
