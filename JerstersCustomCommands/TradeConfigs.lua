@@ -44,7 +44,7 @@ local ROIDSConfig = {
     },
     stacksToTrade = 1,
     validStacks = {1, 2, 3, 4, 5, 6}, -- Allowed # of stacks to trade.
-    helpText = "Automates trading Salt of R.O.I.D.S. quest materials"
+    helpText = "Automates trading R.O.I.D.S. quest materials"
 }
 
 -- Configuration table for Gizzard Gum
