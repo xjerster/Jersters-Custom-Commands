@@ -27,7 +27,6 @@ function TradeItems:RegisterSlashCommand(slashCmd, config)
     JerstersCC:RegisterSlashCommand(slashCmd, handler, config.helpText, "[stacks: nil, " .. table.concat(config.validStacks, ", ") .. "]", "Trading")
 end
 
-
 -- Register a custom trade command for /JCCTrade ItemName Count
 function TradeItems:RegisterCustomTradeCommand(slashCmd)
     local handler = function(msg)
@@ -54,7 +53,6 @@ function TradeItems:RegisterCustomTradeCommand(slashCmd)
         -- Trade the item
         self:GetStack(itemName, count, 1, function(nextSlot)
             if nextSlot then
-                print("Traded " .. count .. "x " .. itemName .. " successfully.")
             else
                 self:Error("Failed to trade " .. itemName .. ".")
             end

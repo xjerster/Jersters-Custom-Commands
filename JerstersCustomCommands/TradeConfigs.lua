@@ -24,7 +24,7 @@ local ScorpokConfig = {
 }
 
 -- Register slash commands
-TradeItems:RegisterSlashCommand("TRADEDARNASSUSFRIEND", DarnassusConfig)
-TradeItems:RegisterSlashCommand("TRADESCORPOK", ScorpokConfig)
+TradeItems:RegisterSlashCommand("JCCDARNBUFF", DarnassusConfig)
+TradeItems:RegisterSlashCommand("JCCSCORPOK", ScorpokConfig)
 -- Register /JCCTrade
 TradeItems:RegisterCustomTradeCommand("JCCTRADE")
