@@ -11,6 +11,6 @@ Example Commands:
 
 /jcctrade Runecloth 7 - Will break off a stack of 7 Runecloth and place them in an open trade window.
 
-/tradedarnassusfriend - Will break off a stack of 5 of the 3 items used for the Darnassus Friendship Buff.
+/tccdarnbuff - Will break off a stack of 5 of the 3 items used for the Darnassus Friendship Buff.
 
-/tradescorpok 2 - Will break off 2x stacks of for each of the Salt of the Scorpok quest items. (3/2/1 => 6/4/2)
+/jccscorpok 2 - Will break off 2x stacks of for each of the Salt of the Scorpok quest items. (3/2/1 => 6/4/2)
