@@ -19,5 +19,22 @@ local function peopleBeGone()
     print("Players " .. (currentTextureResolution == "1" and "shown" or "hidden") .. ".")
 end
 
+-- Toggle Minimap Player Arrow
+isArrowEnabled = true 
+
+local function toggleMiniArrow()
+    local defaultArrow = "Interface\\Minimap\\MinimapArrow"
+    if isArrowEnabled then
+        Minimap:SetPlayerTexture("")
+        isArrowEnabled = false
+    else
+        Minimap:SetPlayerTexture(defaultArrow)
+        isArrowEnabled = true
+    end
+end
+
+
+-- RegisterSlashCommands
 JerstersCC:RegisterSlashCommand("JCCTOGC2M", clickToWalk, "Toggles Click-to-Move mode.", "", "Utility")
 JerstersCC:RegisterSlashCommand("JCCTOGPPL", peopleBeGone, "Toggles Visibility of Players.", "", "Utility" )
+JerstersCC:RegisterSlashCommand("JCCTOGMAPA", toggleMiniArrow, "Toggles Player's Minimap Arrow", "", "Utility" )
