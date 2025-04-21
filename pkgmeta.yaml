@@ -1,0 +1,6 @@
+package-as: Jerster's Custom Commands
+enable-nolib-creation: no
+ignore:
+  - .vscode
+  - LICENSE
+  - README.md
