@@ -22,7 +22,7 @@ SLASH_JERSTERSCC2 = "/JCC"
 SlashCmdList["JERSTERSCC"] = function(msg)
     if msg:lower() == "menu" then
         -- Display help menu
-        print("|cff00ff00JerstersCC Help Menu:|r")
+        print("|cff0070ddJerstersCC Help Menu:|r")
         if next(JerstersCC.commands) == nil then
             print("No commands available.")
         else
@@ -35,13 +35,13 @@ SlashCmdList["JERSTERSCC"] = function(msg)
             end
             -- Display each category
             for cat, cmds in pairs(categories) do
-                print(cat .. " Commands:")
+                print("|cff00ff00" .. cat .. " Commands:|r")
                 for _, entry in ipairs(cmds) do
                     print("  /" .. entry.cmd:lower() .. " " .. entry.info.parameters .. " - " .. entry.info.description)
                 end
             end
         end
     else
-        print("|cff00ff00JerstersCC:|r Use /JerstersCC menu to see available commands.")
+        print("|cff0070ddJerstersCC:|r Use /JerstersCC menu to see available commands.")
     end
 end

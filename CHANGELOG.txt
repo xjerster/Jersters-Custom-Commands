@@ -1,9 +1,9 @@
-Version: v1.0.4
+Version: v1.0.5
 Author: xJerster
-Date: 22 April 2025
+Date: 23 April 2025
 
 Changes:
 v1.0.5. - Minor menu improvements.
 v1.0.4. - Added Crafting Slash Commands for Mooncloth/Arcanite Transmute and Custom.
-v1.0.3. - Minor updates solidfing Curseforge Automated Package Manager.
+v1.0.3. - Minor updates solidifing Curseforge Automated Package Manager.
 
