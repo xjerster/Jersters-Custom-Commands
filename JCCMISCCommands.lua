@@ -2,12 +2,12 @@
 -- Toggle Click-to-Move using CVar
 local function clickToWalk()
     if InCombatLockdown() then
-        print("Cannot toggle Click-to-Move in combat.")
+        DEFAULT_CHAT_FRAME:AddMessage("Cannot toggle Click-to-Move in combat.")
         return
     end
     local current = GetCVar("autointeract")
     SetCVar("autointeract", current == "1" and "0" or "1")
-    print("Click-to-Move " .. (current == "1" and "disabled" or "enabled") .. ".")
+    DEFAULT_CHAT_FRAME:AddMessage("Click-to-Move " .. (current == "1" and "disabled" or "enabled") .. ".")
 end
 
 -- Set character visablity
@@ -16,7 +16,7 @@ local function peopleBeGone()
     local currentTextureResolution = GetCVar("graphicsTextureResolution")
     SetCVar("componentTexLoadLimit", currentTexLoadLimit == "6" and "0" or "6")
     SetCVar("graphicsTextureResolution", currentTextureResolution == "1" and "0" or "1")
-    print("Players " .. (currentTextureResolution == "1" and "shown" or "hidden") .. ".")
+    DEFAULT_CHAT_FRAME:AddMessage("Players " .. (currentTextureResolution == "1" and "shown" or "hidden") .. ".")
 end
 
 -- Toggle Minimap Player Arrow
@@ -83,6 +83,12 @@ local function craftBandage()
     end
 end
 
+local function currBuild()
+    local interfaceVersion = select(4, GetBuildInfo())
+    DEFAULT_CHAT_FRAME:AddMessage("|cff0070ddInterface Version:|r " .. interfaceVersion)
+end
+
+
 -- RegisterSlashCommands
 JerstersCC:RegisterSlashCommand("JCCTOGC2M", clickToWalk, "Toggles Click-to-Move mode.", "", "Utility")
 JerstersCC:RegisterSlashCommand("JCCTOGPPL", peopleBeGone, "Toggles Visibility of Players.", "", "Utility" )
@@ -91,3 +97,4 @@ JerstersCC:RegisterSlashCommand("JCCCRAFT", craftItem, "Crafts a given item *Tra
 JerstersCC:RegisterSlashCommand("JCCCRAFTMOONCLOTH", craftMooncloth, "Creats Mooncloth.", "", "Crafting" )
 JerstersCC:RegisterSlashCommand("JCCCRAFTARCANITE", craftArcanite, "Transmutes Arcanite.", "", "Crafting" )
 JerstersCC:RegisterSlashCommand("JCCCRAFTBANDAGE", craftBandage, "Attempts to Craft 20 Heavy Runcloth Bandages.", "", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCCURBUILD", currBuild, "Displays current WOW build in the chat window.", "", "Utility" )

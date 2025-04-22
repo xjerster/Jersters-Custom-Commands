@@ -65,7 +65,7 @@ end
 
 -- Error handler
 function TradeItems:Error(msg)
-    print("|cffff0000TradeItems Error:|r " .. msg)
+    DEFAULT_CHAT_FRAME:AddMessage("|cffff0000TradeItems Error:|r " .. msg)
 end
 
 -- Check if trade window is open
@@ -199,7 +199,7 @@ function TradeItems:StartTrade(config)
     local tradeSlot = 1
     local function processItem(index)
         if index > #config.items then
-            print("Trade setup complete.")
+            DEFAULT_CHAT_FRAME:AddMessage("Trade setup complete.")
             return
         end
 

@@ -1,8 +1,8 @@
-## Interface: 11506
+## Interface: 11507
 ## Title: Jerster's Custom Commands
 ## Notes: Makes routine acctions easier with custom commands.
 ## Author: xJerster
-## Version: 1.0.4
+## Version: 1.0.5
 ## X-Curse-Project-ID: 1247557
 
 JerstersCCCore.lua
