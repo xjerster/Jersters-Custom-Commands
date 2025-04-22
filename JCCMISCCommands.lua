@@ -86,8 +86,8 @@ end
 -- RegisterSlashCommands
 JerstersCC:RegisterSlashCommand("JCCTOGC2M", clickToWalk, "Toggles Click-to-Move mode.", "", "Utility")
 JerstersCC:RegisterSlashCommand("JCCTOGPPL", peopleBeGone, "Toggles Visibility of Players.", "", "Utility" )
-JerstersCC:RegisterSlashCommand("JCCTOGMAPA", toggleMiniArrow, "Toggles Player's Minimap Arrow", "", "Utility" )
-JerstersCC:RegisterSlashCommand("JCCCRAFT", craftItem, "Crafts a given item", "", "Crafting" )
-JerstersCC:RegisterSlashCommand("JCCCRAFTMOONCLOTH", craftMooncloth, "Crafts a given item", "", "Crafting" )
-JerstersCC:RegisterSlashCommand("JCCCRAFTARCANITE", craftArcanite, "Crafts a given item", "", "Crafting" )
-JerstersCC:RegisterSlashCommand("JCCCRAFTBANDAGE", craftBandage, "Crafts a given item", "", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCTOGMAPA", toggleMiniArrow, "Toggles Player's Minimap Arrow.", "", "Utility" )
+JerstersCC:RegisterSlashCommand("JCCCRAFT", craftItem, "Crafts a given item *Tradeskill Window must be open.", "", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCCRAFTMOONCLOTH", craftMooncloth, "Creats Mooncloth.", "", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCCRAFTARCANITE", craftArcanite, "Transmutes Arcanite.", "", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCCRAFTBANDAGE", craftBandage, "Attempts to Craft 20 Heavy Runcloth Bandages.", "", "Crafting" )
