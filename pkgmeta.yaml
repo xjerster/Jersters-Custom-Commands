@@ -2,5 +2,6 @@ package-as: JersterCustomCommands
 enable-nolib-creation: no
 ignore:
   - .vscode/
+  - .gitignore
   - README.md
 manual-changelog: CHANGELOG.txt
