@@ -2,7 +2,7 @@
 ## Title: Jerster's Custom Commands
 ## Notes: Makes routine acctions easier with custom commands.
 ## Author: xJerster
-## Version: 1.0.3
+## Version: 1.0.4
 ## X-Curse-Project-ID: 1247557
 
 JerstersCCCore.lua
