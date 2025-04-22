@@ -1,0 +1,7 @@
+Version: v1.0.3
+Author: xJerster
+Date: 22 April 2025
+
+Changes:
+Minor updates solidfing Curseforge Automated Package Manager.
+

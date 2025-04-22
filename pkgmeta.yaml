@@ -1,4 +1,6 @@
-package-as: Jerster's Custom Commands
+package-as: JersterCustomCommands
 enable-nolib-creation: no
 ignore:
   - .vscode/
+  - README.md
+manual-changelog: CHANGELOG.txt
