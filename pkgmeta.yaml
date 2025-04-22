@@ -1,4 +1,4 @@
-package-as: JersterCustomCommands
+package-as: JerstersCustomCommands
 enable-nolib-creation: no
 ignore:
   - .vscode/

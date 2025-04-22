@@ -33,8 +33,61 @@ local function toggleMiniArrow()
     end
 end
 
+-- Generic Crafting Slash Command
+local function craftItem(msg)
+    local normalizedMsg
+    if msg:match("|Hitem") then
+        local link, count = msg:match("^(.-)%s")
+        local itemName = link and C_Item.GetItemInfoInstant(link) or msg
+        normalizedMsg = itemName
+    else
+        itemName = msg
+    end
+    for i=1, GetNumTradeSkills() do 
+        if GetTradeSkillInfo(i)==itemName then 
+            DoTradeSkill(i,(select(3,GetTradeSkillInfo(i)))) 
+        end
+    end
+end
+
+-- Mooncloth Slash Command
+local function craftMooncloth()
+    CastSpellByName("Tailoring")
+    local itemName = "Mooncloth"
+    for i=1, GetNumTradeSkills() do 
+        if GetTradeSkillInfo(i)==itemName then 
+            DoTradeSkill(i,(select(3,GetTradeSkillInfo(i)))) 
+        end
+    end
+end
+
+-- Arcanite Slash Command
+local function craftArcanite()
+    CastSpellByName("Alchemy")
+    local itemName = "Transmute: Arcanite"
+    for i=1, GetNumTradeSkills() do 
+        if GetTradeSkillInfo(i)==itemName then 
+            DoTradeSkill(i,(select(3,GetTradeSkillInfo(i)))) 
+        end
+    end
+end
+
+-- Arcanite Slash Command
+local function craftBandage()
+    CastSpellByName("First Aid")
+    local itemName = "Heavy Runecloth Bandage"
+    for i=1, GetNumTradeSkills() do 
+        if GetTradeSkillInfo(i)==itemName then 
+            DoTradeSkill(i,(select(3,GetTradeSkillInfo(i))), 20) 
+        end
+    end
+end
 
 -- RegisterSlashCommands
 JerstersCC:RegisterSlashCommand("JCCTOGC2M", clickToWalk, "Toggles Click-to-Move mode.", "", "Utility")
 JerstersCC:RegisterSlashCommand("JCCTOGPPL", peopleBeGone, "Toggles Visibility of Players.", "", "Utility" )
 JerstersCC:RegisterSlashCommand("JCCTOGMAPA", toggleMiniArrow, "Toggles Player's Minimap Arrow", "", "Utility" )
+JerstersCC:RegisterSlashCommand("JCCCRAFT", craftItem, "Crafts a given item", "", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCCRAFTMOONCLOTH", craftMooncloth, "Crafts a given item", "", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCCRAFTARCANITE", craftArcanite, "Crafts a given item", "", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCCRAFTBANDAGE", craftBandage, "Crafts a given item", "", "Crafting" )
