@@ -103,25 +103,6 @@ local function currBuild()
     DEFAULT_CHAT_FRAME:AddMessage("|cff0070ddInterface Version:|r " .. interfaceVersion)
 end
 
-local function test(msg)
-    if not msg or msg == "" then
-        print("Error: No item specified.")
-        return
-    end
-    local normalizedMsg = ""
-    if msg:match("|Hitem") then
-        local link, count = msg:match("^(.-)%s*(%d*)$")
-        local itemName = link and C_Item.GetItemInfo(link) or msg
-        normalizedMsg = itemName .. " " .. (count or 1)
-    else
-        normalizedMsg = msg:gsub("%[", ""):gsub("%]", "")
-    end
-    local itemName, count = normalizedMsg:match("^(.-)%s*(%d*)$")
-    count = tonumber(count) or 1
-    print(count .. " | " .. itemName)
-end
-
-
 -- RegisterSlashCommands
 JerstersCC:RegisterSlashCommand("JCCTOGC2M", clickToWalk, "Toggles Click-to-Move mode.", "", "Utility")
 JerstersCC:RegisterSlashCommand("JCCTOGPPL", peopleBeGone, "Toggles Visibility of Players.", "", "Utility" )
@@ -131,4 +112,4 @@ JerstersCC:RegisterSlashCommand("JCCCRAFTMOONCLOTH", craftMooncloth, "Creats Moo
 JerstersCC:RegisterSlashCommand("JCCCRAFTARCANITE", craftArcanite, "Transmutes Arcanite.", "", "Crafting" )
 JerstersCC:RegisterSlashCommand("JCCCRAFTBANDAGE", craftBandage, "Attempts to Craft 20 Heavy Runcloth Bandages.", "", "Crafting" )
 JerstersCC:RegisterSlashCommand("JCCCURBUILD", currBuild, "Displays current WOW build in the chat window.", "", "Utility" )
-JerstersCC:RegisterSlashCommand("JCCCURBUILD", currBuild, "Displays current WOW build in the chat window.", "", "Utility" )
+
