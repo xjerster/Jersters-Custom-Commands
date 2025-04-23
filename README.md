@@ -17,5 +17,6 @@ Example Commands:
 
 
 TODO:
-Order Commands in the help menu
-Add item inseerter?
+- Order Commands in the help menu
+- Improve /jcccraft to encompase all items automatically. Depreciating /jcccraft arcanite/mooncloth/bandage
+- Add item inseerter?

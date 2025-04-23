@@ -35,19 +35,34 @@ end
 
 -- Generic Crafting Slash Command
 local function craftItem(msg)
-    local normalizedMsg
-    if msg:match("|Hitem") then
-        local link, count = msg:match("^(.-)%s")
-        local itemName = link and C_Item.GetItemInfoInstant(link) or msg
-        normalizedMsg = itemName
-    else
-        itemName = msg
+    if not msg or msg == "" then
+        print("Error: No item specified.")
+        return
     end
-    for i=1, GetNumTradeSkills() do 
-        if GetTradeSkillInfo(i)==itemName then 
-            DoTradeSkill(i,(select(3,GetTradeSkillInfo(i)))) 
+    local normalizedMsg = ""
+    if msg:match("|Hitem") then
+        local link, count = msg:match("^(.-)%s*(%d*)$")
+        local itemName = link and C_Item.GetItemInfo(link) or msg
+        normalizedMsg = itemName .. " " .. (count or 1)
+    else
+        normalizedMsg = msg:gsub("%[", ""):gsub("%]", "")
+    end
+    local itemName, count = normalizedMsg:match("^(.-)%s*(%d*)$")
+    count = tonumber(count) or 1
+    for i = 1, GetNumTradeSkills() do
+        local skillName = GetTradeSkillInfo(i)
+        if skillName and skillName:lower() == itemName:lower() then
+            -- Validate reagents and count
+            local numAvailable = select(3, GetTradeSkillInfo(i)) or 0
+            if count > numAvailable then
+                print("Error: Not enough reagents to craft " .. count .. "x " .. itemName)
+                return
+            end
+            DoTradeSkill(i, count)
+            return
         end
     end
+    print("Error: Trade skill '" .. itemName .. "' not found.")
 end
 
 -- Mooncloth Slash Command
@@ -78,7 +93,7 @@ local function craftBandage()
     local itemName = "Heavy Runecloth Bandage"
     for i=1, GetNumTradeSkills() do 
         if GetTradeSkillInfo(i)==itemName then 
-            DoTradeSkill(i,(select(3,GetTradeSkillInfo(i))), 20) 
+            DoTradeSkill(i, 20) 
         end
     end
 end
@@ -88,13 +103,32 @@ local function currBuild()
     DEFAULT_CHAT_FRAME:AddMessage("|cff0070ddInterface Version:|r " .. interfaceVersion)
 end
 
+local function test(msg)
+    if not msg or msg == "" then
+        print("Error: No item specified.")
+        return
+    end
+    local normalizedMsg = ""
+    if msg:match("|Hitem") then
+        local link, count = msg:match("^(.-)%s*(%d*)$")
+        local itemName = link and C_Item.GetItemInfo(link) or msg
+        normalizedMsg = itemName .. " " .. (count or 1)
+    else
+        normalizedMsg = msg:gsub("%[", ""):gsub("%]", "")
+    end
+    local itemName, count = normalizedMsg:match("^(.-)%s*(%d*)$")
+    count = tonumber(count) or 1
+    print(count .. " | " .. itemName)
+end
+
 
 -- RegisterSlashCommands
 JerstersCC:RegisterSlashCommand("JCCTOGC2M", clickToWalk, "Toggles Click-to-Move mode.", "", "Utility")
 JerstersCC:RegisterSlashCommand("JCCTOGPPL", peopleBeGone, "Toggles Visibility of Players.", "", "Utility" )
 JerstersCC:RegisterSlashCommand("JCCTOGMAPA", toggleMiniArrow, "Toggles Player's Minimap Arrow.", "", "Utility" )
-JerstersCC:RegisterSlashCommand("JCCCRAFT", craftItem, "Crafts a given item *Tradeskill Window must be open.", "", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCCRAFT", craftItem, "Crafts a given item *Tradeskill Window must be open.", "[Item Name] -Optional Count(# or all)", "Crafting" )
 JerstersCC:RegisterSlashCommand("JCCCRAFTMOONCLOTH", craftMooncloth, "Creats Mooncloth.", "", "Crafting" )
 JerstersCC:RegisterSlashCommand("JCCCRAFTARCANITE", craftArcanite, "Transmutes Arcanite.", "", "Crafting" )
 JerstersCC:RegisterSlashCommand("JCCCRAFTBANDAGE", craftBandage, "Attempts to Craft 20 Heavy Runcloth Bandages.", "", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCCURBUILD", currBuild, "Displays current WOW build in the chat window.", "", "Utility" )
 JerstersCC:RegisterSlashCommand("JCCCURBUILD", currBuild, "Displays current WOW build in the chat window.", "", "Utility" )

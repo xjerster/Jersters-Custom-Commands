@@ -33,20 +33,23 @@ function TradeItems:RegisterCustomTradeCommand(slashCmd)
         -- Normalize input: Handle item links with C_Item.GetItemInfo, remove brackets for plain text
         local normalizedMsg
         if msg:match("|Hitem") then
-            local link, count = msg:match("^(.-)%s+(%d+)$")
+            local link, count = msg:match("^(.-)%s*(%d*)$")
             local itemName = link and C_Item.GetItemInfo(link) or msg
-            normalizedMsg = itemName .. " " .. (count or "")
+            normalizedMsg = itemName .. " " .. (count or 1)
         else
             normalizedMsg = msg:gsub("%[", ""):gsub("%]", "")
         end
-        
+        local itemName, count = normalizedMsg:match("^(.-)%s*(%d*)$")
         -- Parse input: expect "ItemName Count" (ItemName can have spaces)
-        local itemName, count = normalizedMsg:match("^(.-)%s+(%d+)$")
-        count = tonumber(count)
-        
+        count = tonumber(count) or 1
         -- Check if trade window is open
         if not self:IsTradeWindowOpen() then
             self:Error("Please open a trade window first.")
+            return
+        end
+        -- Validate item in inventory
+        if C_Item.GetItemCount(itemName) < count then
+            self:Error("Not enough " .. itemName .. " in your bags.")
             return
         end
 
