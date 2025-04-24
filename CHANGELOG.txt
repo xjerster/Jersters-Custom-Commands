@@ -3,8 +3,10 @@ Author: xJerster
 Date: 2x April 2025
 
 Changes:
-v1.0.6. - 
-v1.0.5. - Minor menu improvements. Added Current WoW build /Command. Improved /jcccraft Item Count
+v1.0.6.:
+ - Changed /jcccraft to do a Craft All when no item count is provided. e.g. "/jcccraft [Runecloth Bandage]"
+ - Changed /jcccraftbandage to do a Craft All on the highest known bandage.
+v1.0.5. - Minor menu improvements. Added Current WoW build /Command. Improved /jcccraft Item Count logic.
 v1.0.4. - Added Crafting Slash Commands for Mooncloth/Arcanite Transmute and Custom.
 v1.0.3. - Minor updates solidifing Curseforge Automated Package Manager.
 v1.0.2. - Added MISC Commands for Toggling Minimap Arrow, Player Models, and Click-To-Walk mode.

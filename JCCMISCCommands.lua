@@ -48,14 +48,18 @@ local function craftItem(msg)
         normalizedMsg = msg:gsub("%[", ""):gsub("%]", "")
     end
     local itemName, count = normalizedMsg:match("^(.-)%s*(%d*)$")
-    count = tonumber(count) or 1
+    count = tonumber(count) or 0
     for i = 1, GetNumTradeSkills() do
         local skillName = GetTradeSkillInfo(i)
         if skillName and skillName:lower() == itemName:lower() then
             -- Validate reagents and count
             local numAvailable = select(3, GetTradeSkillInfo(i)) or 0
             if count > numAvailable then
-                print("Error: Not enough reagents to craft " .. count .. "x " .. itemName)
+                print("Error: Innsuficent reagents. Supply:" .. numAvailable .. "Requested: " .. count)
+                DoTradeSkill(i,(select(3,GetTradeSkillInfo(i))))
+                return
+            elseif count == 0 then
+                DoTradeSkill(i,(select(3,GetTradeSkillInfo(i))))
                 return
             end
             DoTradeSkill(i, count)
@@ -87,13 +91,13 @@ local function craftArcanite()
     end
 end
 
--- Arcanite Slash Command
+-- Bandage Slash Command
 local function craftBandage()
     CastSpellByName("First Aid")
-    local itemName = "Heavy Runecloth Bandage"
+    local itemName = "Bandage"
     for i=1, GetNumTradeSkills() do 
-        if GetTradeSkillInfo(i)==itemName then 
-            DoTradeSkill(i, 20) 
+        if string.match(GetTradeSkillInfo(i), itemName) then
+            DoTradeSkill(i,(select(3,GetTradeSkillInfo(i))))  
         end
     end
 end
@@ -107,9 +111,9 @@ end
 JerstersCC:RegisterSlashCommand("JCCTOGC2M", clickToWalk, "Toggles Click-to-Move mode.", "", "Utility")
 JerstersCC:RegisterSlashCommand("JCCTOGPPL", peopleBeGone, "Toggles Visibility of Players.", "", "Utility" )
 JerstersCC:RegisterSlashCommand("JCCTOGMAPA", toggleMiniArrow, "Toggles Player's Minimap Arrow.", "", "Utility" )
-JerstersCC:RegisterSlashCommand("JCCCRAFT", craftItem, "Crafts a given item *Tradeskill Window must be open.", "[Item Name] -Optional Count(# or all)", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCCRAFT", craftItem, "Crafts a given item *Tradeskill Window must be open.", "[Item Name] -Optional Count", "Crafting" )
 JerstersCC:RegisterSlashCommand("JCCCRAFTMOONCLOTH", craftMooncloth, "Creats Mooncloth.", "", "Crafting" )
 JerstersCC:RegisterSlashCommand("JCCCRAFTARCANITE", craftArcanite, "Transmutes Arcanite.", "", "Crafting" )
-JerstersCC:RegisterSlashCommand("JCCCRAFTBANDAGE", craftBandage, "Attempts to Craft 20 Heavy Runcloth Bandages.", "", "Crafting" )
+JerstersCC:RegisterSlashCommand("JCCCRAFTBANDAGE", craftBandage, "Craft All - Highest known bandage.", "", "Crafting" )
 JerstersCC:RegisterSlashCommand("JCCCURBUILD", currBuild, "Displays current WOW build in the chat window.", "", "Utility" )
 
